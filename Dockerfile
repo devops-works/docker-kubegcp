@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ENV CLOUDSDK_PYTHON=python3
 ENV KUBECONFIG=/.kube/config
+ENV CLOUDSDK_CONFIG=/.config/gcloud
 WORKDIR /
 
 ENTRYPOINT ["kubectl"]
