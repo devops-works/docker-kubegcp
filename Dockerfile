@@ -19,10 +19,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get remove -y gnupg2 curl && \
     apt-get autoremove -y && \
     apt-get clean && \
-    rm -rf /usr/lib/google-cloud-sdk/platform/bundled-python* && \
-    rm -rf /usr/lib/google-cloud-sdk/lib/surface/alpha \
+    rm -rf /usr/lib/google-cloud-sdk/platform/bundled*python* \
+           /usr/lib/google-cloud-sdk/platform/bq \
+           /usr/lib/google-cloud-sdk/platform/gsutil* \
+           /usr/lib/google-cloud-sdk/bin/bq \
+           /usr/lib/google-cloud-sdk/lib/surface/alpha \
            /usr/lib/google-cloud-sdk/lib/surface/beta \
-           /usr/lib/google-cloud-sdk/platform/gsutil* && \
+           /usr/lib/google-cloud-sdk/lib/third_party/botocore \
+           /usr/lib/google-cloud-sdk/lib/third_party/kubernetes && \
     rm -rf /var/lib/apt/lists/* \
            /var/cache/apt/archives/* \
            /usr/share/doc/* \
