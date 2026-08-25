@@ -18,6 +18,3 @@ docker run -it --rm --name remote-elastic \
   port-forward -n MY-NAMESPACE svc/elasticsearch 9200:9200 --context MY-KUBE-CONTEXT --address='0.0.0.0'
 ```
 
-## TODO
-
-- [ ] Try to reduce image size by removing unnecessary libraries
