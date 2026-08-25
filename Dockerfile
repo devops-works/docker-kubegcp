@@ -1,17 +1,14 @@
+FROM registry.k8s.io/kubectl:v1.36.4 AS kubectl
+
 FROM debian:trixie-slim
 
-ARG TARGETARCH
+COPY --from=kubectl /bin/kubectl /usr/local/bin/kubectl
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     ca-certificates \
     gnupg2 \
     python3 && \
-    curl -LO "https://dl.k8s.io/release/v1.36.4/bin/linux/${TARGETARCH}/kubectl" && \
-    curl -LO "https://dl.k8s.io/release/v1.36.4/bin/linux/${TARGETARCH}/kubectl.sha256" && \
-    echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check && \
-    install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
-    rm kubectl kubectl.sha256 && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
       | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
