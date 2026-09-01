@@ -1,4 +1,4 @@
-FROM registry.k8s.io/kubectl:v1.36.4 AS kubectl
+FROM registry.k8s.io/kubectl:v1.37.0 AS kubectl
 
 FROM debian:trixie-slim
 
